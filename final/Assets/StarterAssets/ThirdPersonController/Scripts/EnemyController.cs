@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public float movementSpeed = 5.0f;
     private Transform player;
 
     void Start()
