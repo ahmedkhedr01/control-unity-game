@@ -3,31 +3,69 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class healthControl : MonoBehaviour
+
+
+public class HealthControl : MonoBehaviour
 {
-    // Start is called before the first frame update
     private PlayerInput _playerInput;
-    public int healthPoints = 100 ;
+    public int healthPoints = 100;
     public int stamina = 100;
     public int energy = 100;
-    void Start()
-    {
-        _playerInput = GetComponent<PlayerInput>();
-    }
+    public Animator chargedanim;
+    public bool hasIncreasedHealth = false; // Flag to track if health has been increased
+    public bool hasDecreasedHealth = false; // Flag to track if health has been decreased
+    private WaitForSeconds increaseDelay = new WaitForSeconds(1f); // Wait for 1 second
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown("space"))
+
+        if (chargedanim.GetBool("explosion"))
         {
-            Debug.Log(stamina);
-            DecreaseStamina(5);
-            Debug.Log(stamina);
+            if (healthPoints <= 50 && !hasDecreasedHealth)
+            {
+                DecreaseHealth(50);
+                hasDecreasedHealth = true;
+                chargedanim.SetBool("explosion", false);
+                Debug.Log("2");
+            }
+            else if (healthPoints > 50 && !hasIncreasedHealth)
+            {
+                DecreaseHealth(55);
+                hasIncreasedHealth = true;
+                chargedanim.SetBool("explosion", false);
+                StartCoroutine(IncreaseHealthOverTime());
+                Debug.Log("1");
+                hasDecreasedHealth = true;
+                hasIncreasedHealth = false;
+
+            }
+        }
+        else
+        {
+
+             StartCoroutine(IncreaseHealthOverTime());
         }
     }
+
+    private IEnumerator IncreaseHealthOverTime()
+    {
+        yield return increaseDelay;
+
+        if (!hasIncreasedHealth)
+        {
+            IncreaseHealth(5);
+            hasIncreasedHealth = true;
+            // Reset hasIncreasedHealthThisSecond after 1 second
+            yield return new WaitForSeconds(1f);
+            hasIncreasedHealth = false;
+        }
+    }
+
+
+
     public void IncreaseStamina(int s)
     {
-        if(s + stamina > 100)
+        if (s + stamina > 100)
         {
             stamina = 100;
         }
