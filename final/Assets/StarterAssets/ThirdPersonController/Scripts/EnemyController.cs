@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public GameObject rockPrefab;
-    public float shootInterval = 3f;
+    public float shootInterval = 5f;
     public float projectileSpeed = 10f;
     public int damageAmount = 70;
 

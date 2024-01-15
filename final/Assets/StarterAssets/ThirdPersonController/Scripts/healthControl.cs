@@ -9,6 +9,7 @@ public class HealthControl : MonoBehaviour
 {
     private PlayerInput _playerInput;
     public int healthPoints = 100;
+    public bool isDead = false;
     public int stamina = 100;
     public int energy = 100;
     public Animator chargedanim;
@@ -18,7 +19,16 @@ public class HealthControl : MonoBehaviour
 
     private void Update()
     {
-
+        if (transform.position.y < -10.0f)
+        {
+            isDead = true;
+            Debug.Log("You are dead by falling");
+        }
+        if (healthPoints <= 0)
+        {
+            isDead = true;
+            Debug.Log("You are dead by health");
+        }
         if (chargedanim.GetBool("explosion"))
         {
             if (healthPoints <= 50 && !hasDecreasedHealth)
@@ -43,7 +53,7 @@ public class HealthControl : MonoBehaviour
         else
         {
 
-             StartCoroutine(IncreaseHealthOverTime());
+            StartCoroutine(IncreaseHealthOverTime());
         }
     }
 
