@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class RockCollider : MonoBehaviour
 {
+    private GameObject player;
+    private HealthControl healthControl;
+
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindWithTag("Player").transform.gameObject;
+        healthControl = player.GetComponent<HealthControl>();
 
     }
 
@@ -21,6 +26,7 @@ public class RockCollider : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Enemy collided with player");
+            healthControl.DecreaseHealth(20);
         }
     }
 }

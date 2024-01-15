@@ -10,6 +10,7 @@ TagManager:
   - explosion
   - rangerway
   - distoredway
+  - HealthBar
   layers:
   - Default
   - TransparentFX

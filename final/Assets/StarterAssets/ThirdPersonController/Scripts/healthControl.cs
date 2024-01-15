@@ -9,16 +9,34 @@ public class HealthControl : MonoBehaviour
 {
     private PlayerInput _playerInput;
     public int healthPoints = 100;
+    public bool isDead = false;
     public int stamina = 100;
     public int energy = 100;
     public Animator chargedanim;
     public bool hasIncreasedHealth = false; // Flag to track if health has been increased
     public bool hasDecreasedHealth = false; // Flag to track if health has been decreased
     private WaitForSeconds increaseDelay = new WaitForSeconds(1f); // Wait for 1 second
+    private HealthBar healthBar;
+
+    void Start()
+    {
+        GameObject healthBarGameObject = GameObject.FindWithTag("HealthBar").transform.gameObject;
+        healthBar = healthBarGameObject.GetComponent<HealthBar>();
+    }
 
     private void Update()
     {
-
+        if (transform.position.y < -10.0f)
+        {
+            isDead = true;
+            healthBar.UpdateHealthBar(0, 100);
+            healthPoints = 0;
+        }
+        if (healthPoints <= 0)
+        {
+            isDead = true;
+            Debug.Log("You are dead by health");
+        }
         if (chargedanim.GetBool("explosion"))
         {
             if (healthPoints <= 50 && !hasDecreasedHealth)
@@ -43,7 +61,7 @@ public class HealthControl : MonoBehaviour
         else
         {
 
-             StartCoroutine(IncreaseHealthOverTime());
+            StartCoroutine(IncreaseHealthOverTime());
         }
     }
 
@@ -136,5 +154,6 @@ public class HealthControl : MonoBehaviour
         {
             healthPoints -= h;
         }
+        healthBar.UpdateHealthBar(healthPoints, 100);
     }
 }
