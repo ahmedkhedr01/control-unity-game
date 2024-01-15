@@ -8,6 +8,8 @@ TagManager:
   - way
   - flyingway
   - explosion
+  - rangerway
+  - distoredway
   layers:
   - Default
   - TransparentFX
