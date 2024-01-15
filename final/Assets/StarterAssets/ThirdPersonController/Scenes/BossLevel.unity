@@ -258,6 +258,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: dd3baa7d6209e0e4390bfb4b848bc57d,
         type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: dd3baa7d6209e0e4390bfb4b848bc57d, type: 3}
+    - target: {fileID: 5866666021909216657, guid: dd3baa7d6209e0e4390bfb4b848bc57d,
+        type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 40db3173a05ae3242b1c182a09b0a183, type: 2}
@@ -655,79 +660,28 @@ LightProbeGroup:
   - {x: 7.1518564, y: 2.7763042, z: -11.2319765}
   - {x: 8.993203, y: 2.3566551, z: -8.796325}
   m_Dering: 1
---- !u!1001 &602597727
-PrefabInstance:
+--- !u!1 &730255636 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 00c575a9cbf18426ca8c268c7ec67148,
+    type: 3}
+  m_PrefabInstance: {fileID: 825675742}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &730255637
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: f9fb20bc7351e486988d3bbc724ed611,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 10.36
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f9fb20bc7351e486988d3bbc724ed611,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f9fb20bc7351e486988d3bbc724ed611,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 17.74
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f9fb20bc7351e486988d3bbc724ed611,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.1708543
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f9fb20bc7351e486988d3bbc724ed611,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f9fb20bc7351e486988d3bbc724ed611,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.9852963
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f9fb20bc7351e486988d3bbc724ed611,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f9fb20bc7351e486988d3bbc724ed611,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f9fb20bc7351e486988d3bbc724ed611,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 199.675
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f9fb20bc7351e486988d3bbc724ed611,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: f9fb20bc7351e486988d3bbc724ed611,
-        type: 3}
-      propertyPath: m_Name
-      value: Stonefbx
-      objectReference: {fileID: 0}
-    - target: {fileID: 5866666021909216657, guid: f9fb20bc7351e486988d3bbc724ed611,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: d18d1bcc733544b94912b2d08be9e344, type: 2}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f9fb20bc7351e486988d3bbc724ed611, type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730255636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d936a31d38ded4d54ab8beadb9978595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rockPrefab: {fileID: 1000010869019282, guid: d7ba4fe833670a140b9b6085652f0e26, type: 3}
+  shootInterval: 3
+  projectileSpeed: 10
+  damageAmount: 70
 --- !u!1 &798224437
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,6 +747,109 @@ ReflectionProbe:
   m_UseOcclusionCulling: 1
   m_Importance: 1
   m_CustomBakedTexture: {fileID: 0}
+--- !u!1001 &825675742
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 00c575a9cbf18426ca8c268c7ec67148,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 00c575a9cbf18426ca8c268c7ec67148,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 00c575a9cbf18426ca8c268c7ec67148,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 00c575a9cbf18426ca8c268c7ec67148,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.721041
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 00c575a9cbf18426ca8c268c7ec67148,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 00c575a9cbf18426ca8c268c7ec67148,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 13.6778555
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 00c575a9cbf18426ca8c268c7ec67148,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 00c575a9cbf18426ca8c268c7ec67148,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 00c575a9cbf18426ca8c268c7ec67148,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 00c575a9cbf18426ca8c268c7ec67148,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 00c575a9cbf18426ca8c268c7ec67148,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 00c575a9cbf18426ca8c268c7ec67148,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 00c575a9cbf18426ca8c268c7ec67148,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 00c575a9cbf18426ca8c268c7ec67148,
+        type: 3}
+      propertyPath: m_Name
+      value: character
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 00c575a9cbf18426ca8c268c7ec67148,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d18d1bcc733544b94912b2d08be9e344, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 00c575a9cbf18426ca8c268c7ec67148,
+        type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+        'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
+        'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
+        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
+        'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'throw'"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 00c575a9cbf18426ca8c268c7ec67148,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 730255637}
+  m_SourcePrefab: {fileID: 100100000, guid: 00c575a9cbf18426ca8c268c7ec67148, type: 3}
 --- !u!1001 &1106828573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1057,6 +1114,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 40db3173a05ae3242b1c182a09b0a183, type: 2}
+    - target: {fileID: 6982812146204527121, guid: 64dce48905ffd9b4293e595fa6941544,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8187455079231382173, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
@@ -1200,4 +1262,4 @@ SceneRoots:
   - {fileID: 443162992}
   - {fileID: 1909374702}
   - {fileID: 470712103}
-  - {fileID: 602597727}
+  - {fileID: 825675742}
