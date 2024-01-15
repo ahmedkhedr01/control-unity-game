@@ -8,6 +8,7 @@ TagManager:
   - way
   - flyingway
   - explosion
+  - HealthBar
   layers:
   - Default
   - TransparentFX

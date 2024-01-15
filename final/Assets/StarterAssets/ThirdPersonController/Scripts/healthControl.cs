@@ -16,13 +16,21 @@ public class HealthControl : MonoBehaviour
     public bool hasIncreasedHealth = false; // Flag to track if health has been increased
     public bool hasDecreasedHealth = false; // Flag to track if health has been decreased
     private WaitForSeconds increaseDelay = new WaitForSeconds(1f); // Wait for 1 second
+    private HealthBar healthBar;
+
+    void Start()
+    {
+        GameObject healthBarGameObject = GameObject.FindWithTag("HealthBar").transform.gameObject;
+        healthBar = healthBarGameObject.GetComponent<HealthBar>();
+    }
 
     private void Update()
     {
         if (transform.position.y < -10.0f)
         {
             isDead = true;
-            Debug.Log("You are dead by falling");
+            healthBar.UpdateHealthBar(0, 100);
+            healthPoints = 0;
         }
         if (healthPoints <= 0)
         {
@@ -146,5 +154,6 @@ public class HealthControl : MonoBehaviour
         {
             healthPoints -= h;
         }
+        healthBar.UpdateHealthBar(healthPoints, 100);
     }
 }
