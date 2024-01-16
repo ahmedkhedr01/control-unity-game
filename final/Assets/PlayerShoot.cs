@@ -5,6 +5,7 @@ using System;
 
 public class PlayerShoot : MonoBehaviour
 {
+    public Animator anim;
     public static Action shootInput;
 
     // Start is called before the first frame update
@@ -19,6 +20,7 @@ public class PlayerShoot : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             shootInput?.Invoke();
+            anim.Play("shooting");
         }
         
     }
