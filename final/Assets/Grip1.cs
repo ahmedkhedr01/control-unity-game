@@ -6,30 +6,42 @@ public class Grip1 : MonoBehaviour
 {
     [SerializeField] GunData gunData;
     [SerializeField] private Transform gripMuzzle;
-  //  private HealthControl healthControl;
+    private HealthControl healthControl;
+    public GameObject player;
 
     float timeSinceLastShot;
 
     private void Start()
     {
         PlayerShoot.shootInput += Shoot;
-        GameObject player = GameObject.FindWithTag("Player");
-    //    healthControl = player.GetComponent<HealthControl>();
+
+        healthControl = player.GetComponent<HealthControl>();
     }
 
     private bool CanShoot() => timeSinceLastShot > 1f / (gunData.fireRate / 60f);
 
     private void Shoot()
     {
-        if (gunData.currentEnergy > 0)
+        if (healthControl.energy > 0)
         {
             if (CanShoot())
             {
-                if(Physics.Raycast(gripMuzzle.position, transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
+                // Get the ray from the mouse cursor position
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                // Create a new Vector3 with the modified x component
+                ray.origin = new Vector3(ray.origin.x, ray.origin.y, ray.origin.z + 1.0f);
+
+
+                if (Physics.Raycast(ray, out RaycastHit hitInfo, gunData.maxDistance))
                 {
                     Debug.Log(hitInfo.transform.name);
+                    if (hitInfo.transform.name == "character")
+                    {
+                        hitInfo.transform.GetComponent<EnemyController>().DecreaseHealth(30);
+                    }
                 }
-                //healthControl.energy -=10;
+                healthControl.energy -= 10;
                 timeSinceLastShot = 0;
                 //OnGunShot();
             }
@@ -39,11 +51,10 @@ public class Grip1 : MonoBehaviour
     private void Update()
     {
         timeSinceLastShot += Time.deltaTime;
-        Debug.DrawRay(gripMuzzle.position, gripMuzzle.forward);
     }
 
     private void onGunShot()
     {
-        
+
     }
 }

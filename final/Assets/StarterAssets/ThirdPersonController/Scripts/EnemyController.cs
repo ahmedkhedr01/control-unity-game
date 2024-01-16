@@ -8,12 +8,20 @@ public class EnemyController : MonoBehaviour
     public float shootInterval = 5f;
     public float projectileSpeed = 10f;
     public int damageAmount = 70;
+    public int armor = 150;
+    public int health = 350;
+    private BossHealthBar bossHealthBar;
+    private BossArmorBar bossArmorBar;
 
     private Transform player;
 
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform; // Make sure to set the tag for the player GameObject
+        GameObject bossHealthBarGameObject = GameObject.FindWithTag("BossHealthBar").transform.gameObject;
+        bossHealthBar = bossHealthBarGameObject.GetComponent<BossHealthBar>();
+        GameObject bossArmorBarGameObject = GameObject.FindWithTag("BossArmorBar").transform.gameObject;
+        bossArmorBar = bossArmorBarGameObject.GetComponent<BossArmorBar>();
         StartCoroutine(RepeatedShootRock());
     }
     IEnumerator RepeatedShootRock()
@@ -28,6 +36,10 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         MoveAndRotate();
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void MoveAndRotate()
@@ -65,6 +77,21 @@ public class EnemyController : MonoBehaviour
             // Destroy the rock after a certain time to avoid cluttering the scene
             Destroy(rock, 5f);
         }
+    }
+
+    public void DecreaseHealth(int damage)
+    {
+        if (damage > armor)
+        {
+            health -= (damage - armor);
+            armor = 0;
+        }
+        else
+        {
+            armor -= damage;
+        }
+        bossArmorBar.UpdateBossArmorBar(armor, 150);
+        bossHealthBar.UpdateBossHealthBar(health, 350);
     }
 
 }

@@ -11,10 +11,11 @@ public class WeaponsControl : MonoBehaviour
 
     // public  RuntimeAnimatorController anim;
     private Animator anim;
+    public Animator animatorPlayer;
     // Start is called before the first frame update
     void Start()
     {
-       anim = gameObject.GetComponent<Animator>();
+        anim = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -22,27 +23,26 @@ public class WeaponsControl : MonoBehaviour
     {
         if (Input.GetKeyDown("1"))
         {
+            animatorPlayer.Play("changeWeapon");
             Equip1();
         }
         if (Input.GetKeyDown("2"))
         {
+            animatorPlayer.Play("changeWeapon");
             Equip2();
-           
+
         }
         if (Input.GetKeyDown("3"))
         {
+            animatorPlayer.Play("changeWeapon");
             Equip3();
         }
         if (Input.GetKeyDown("4"))
         {
+            animatorPlayer.Play("changeWeapon");
             Equip4();
         }
-        if (Input.GetKeyDown("8"))
-        {
-            Debug.Log("Spin Fire1");
-            ShootSpin();
-            Debug.Log("Spin Fire2");
-        }
+
 
     }
 
@@ -60,7 +60,7 @@ public class WeaponsControl : MonoBehaviour
         Slot2.SetActive(true);
         Slot3.SetActive(false);
         Slot4.SetActive(false);
-       
+
     }
     void Equip3()
     {

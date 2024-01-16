@@ -13,6 +13,9 @@ TagManager:
   - HealthBar
   - distored
   - invisible
+  - Boss
+  - BossHealthBar
+  - BossArmorBar
   layers:
   - Default
   - TransparentFX
