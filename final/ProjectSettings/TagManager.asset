@@ -12,6 +12,7 @@ TagManager:
   - distoredway
   - HealthBar
   - distored
+  - invisible
   layers:
   - Default
   - TransparentFX
