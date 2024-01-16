@@ -11,14 +11,15 @@ TagManager:
   - rangerway
   - distoredway
   - HealthBar
+  - distored
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
+  - Shield
   - 
   - 
   - 

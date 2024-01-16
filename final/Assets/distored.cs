@@ -14,7 +14,7 @@ public class distored : MonoBehaviour
     public Transform spawnpoint;
     public float enemyspeed;
     Transform player;
-    public Renderer custRender;
+   
 
 
 
