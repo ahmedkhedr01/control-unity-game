@@ -20,7 +20,7 @@ namespace StarterAssets
         public float MoveSpeed = 2.0f;
 
         [Tooltip("Sprint speed of the character in m/s")]
-        public float SprintSpeed = 5.335f;
+        public float SprintSpeed = 6f;
 
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
@@ -96,7 +96,7 @@ namespace StarterAssets
         public float dashTime = 0.25f; // Adjust the dash time as needed
         public float dashDistance = 5f; // Adjust the dash distance as needed
         public float dashingCooldown = 1.0f; // Adjust the dash cooldown as needed
-        private float dashSpeed = 20f;
+        private float dashSpeed = 30f;
         private HealthControl healthControl;
 
 
@@ -174,11 +174,12 @@ namespace StarterAssets
             GroundedCheck();
             Move();
 
-            if (canDash && Input.GetKeyDown(KeyCode.Q) && !isDashing)
+            if (canDash && Input.GetKeyDown(KeyCode.Q) && !isDashing && healthControl.stamina >= 40)
             {
 
                 StartCoroutine(Dash());
                 healthControl.DecreaseStamina(40);
+                
 
             }
         }
