@@ -9,7 +9,7 @@ public class SphereBullet : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             HealthControl healthControl = collision.gameObject.GetComponent<HealthControl>();
-            healthControl.DecreaseHealth(10);
+            healthControl.DecreaseHealth(15);
         }
     }
 
