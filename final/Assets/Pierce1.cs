@@ -33,6 +33,10 @@ public class Piercer1 : MonoBehaviour
                 if (Physics.Raycast(ray, out RaycastHit hitInfo, gunData.maxDistance))
                 {
                     Debug.Log(hitInfo.transform.name);
+                    if (hitInfo.transform.name == "character")
+                    {
+                        hitInfo.transform.GetComponent<EnemyController>().DecreaseHealth(60);
+                    }
                 }
                 healthControl.energy -= 50;
                 timeSinceLastShot = 0;

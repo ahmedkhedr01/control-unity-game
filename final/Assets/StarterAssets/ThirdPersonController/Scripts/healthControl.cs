@@ -16,12 +16,16 @@ public class HealthControl : MonoBehaviour
     public bool hasIncreasedHealth = false; // Flag to track if health has been increased
     public bool hasDecreasedHealth = false; // Flag to track if health has been decreased
     private WaitForSeconds increaseDelay = new WaitForSeconds(1f); // Wait for 1 second
+    public bool justFiredWeapon = false;
+
     private HealthBar healthBar;
 
     void Start()
     {
         GameObject healthBarGameObject = GameObject.FindWithTag("HealthBar").transform.gameObject;
         healthBar = healthBarGameObject.GetComponent<HealthBar>();
+        StartCoroutine(IncreaseHealthOverTime());
+        StartCoroutine(IncreaseEnergyOverTime());
     }
 
     private void Update()
@@ -37,46 +41,75 @@ public class HealthControl : MonoBehaviour
             isDead = true;
             Debug.Log("You are dead by health");
         }
-        if (chargedanim.GetBool("explosion"))
+        // check for the active scene
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Playground")
         {
-            if (healthPoints <= 50 && !hasDecreasedHealth)
+            if (chargedanim.GetBool("explosion"))
             {
-                DecreaseHealth(50);
-                hasDecreasedHealth = true;
-                chargedanim.SetBool("explosion", false);
-                Debug.Log("2");
-            }
-            else if (healthPoints > 50 && !hasIncreasedHealth)
-            {
-                DecreaseHealth(55);
-                hasIncreasedHealth = true;
-                chargedanim.SetBool("explosion", false);
-                StartCoroutine(IncreaseHealthOverTime());
-                Debug.Log("1");
-                hasDecreasedHealth = true;
-                hasIncreasedHealth = false;
+                if (healthPoints <= 50 && !hasDecreasedHealth)
+                {
+                    DecreaseHealth(50);
+                    hasDecreasedHealth = true;
+                    chargedanim.SetBool("explosion", false);
+                    Debug.Log("2");
+                }
+                else if (healthPoints > 50 && !hasIncreasedHealth)
+                {
+                    DecreaseHealth(55);
+                    hasIncreasedHealth = true;
+                    chargedanim.SetBool("explosion", false);
+                    StartCoroutine(IncreaseHealthOverTime());
+                    Debug.Log("1");
+                    hasDecreasedHealth = true;
+                    hasIncreasedHealth = false;
 
+                }
             }
         }
-        else
-        {
 
-            StartCoroutine(IncreaseHealthOverTime());
-        }
+
+
+
     }
 
     private IEnumerator IncreaseHealthOverTime()
     {
-        yield return increaseDelay;
-
-        if (!hasIncreasedHealth)
+        while (true)
         {
-            IncreaseHealth(5);
-            hasIncreasedHealth = true;
-            // Reset hasIncreasedHealthThisSecond after 1 second
-            yield return new WaitForSeconds(1f);
-            hasIncreasedHealth = false;
+            yield return increaseDelay;
+
+            if (!hasIncreasedHealth)
+            {
+                IncreaseHealth(5);
+                hasIncreasedHealth = true;
+                // Reset hasIncreasedHealthThisSecond after 1 second
+                yield return new WaitForSeconds(1f);
+                hasIncreasedHealth = false;
+            }
         }
+    }
+
+    private IEnumerator IncreaseEnergyOverTime()
+    {
+
+        while (true)
+        {
+            if (!justFiredWeapon)
+            {
+                IncreaseEnergy(5);
+
+                yield return new WaitForSeconds(1f);
+            }
+            else
+            {
+                // If the weapon was just fired, wait for 2 seconds
+                yield return new WaitForSeconds(10f);
+
+                // Reset justFiredWeapon after 2 seconds
+                justFiredWeapon = false;
+            }
+        }
+
     }
 
 
@@ -143,6 +176,7 @@ public class HealthControl : MonoBehaviour
         {
             energy -= e;
         }
+        justFiredWeapon = true;
     }
 
     public void DecreaseHealth(int h)

@@ -33,6 +33,10 @@ public class Shatter1 : MonoBehaviour
                 if (Physics.Raycast(ray, out RaycastHit hitInfo, gunData.maxDistance))
                 {
                     Debug.Log(hitInfo.transform.name);
+                    if (hitInfo.transform.name == "character")
+                    {
+                        hitInfo.transform.GetComponent<EnemyController>().DecreaseHealth(45);
+                    }
                 }
                 healthControl.energy -= 15;
                 timeSinceLastShot = 0;
