@@ -22,11 +22,11 @@ public class Shatter1 : MonoBehaviour
         {
             if (CanShoot())
             {
-                if (Physics.Raycast(ShatterMuzzle.position, transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
+                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
                 {
                     Debug.Log(hitInfo.transform.name);
                 }
-                gunData.currentEnergy-=15;
+                gunData.currentEnergy -= 15;
                 timeSinceLastShot = 0;
                 //OnGunShot();
             }

@@ -6,7 +6,7 @@ public class Grip1 : MonoBehaviour
 {
     [SerializeField] GunData gunData;
     [SerializeField] private Transform gripMuzzle;
-  //  private HealthControl healthControl;
+    //  private HealthControl healthControl;
 
     float timeSinceLastShot;
 
@@ -14,7 +14,7 @@ public class Grip1 : MonoBehaviour
     {
         PlayerShoot.shootInput += Shoot;
         GameObject player = GameObject.FindWithTag("Player");
-    //    healthControl = player.GetComponent<HealthControl>();
+        //    healthControl = player.GetComponent<HealthControl>();
     }
 
     private bool CanShoot() => timeSinceLastShot > 1f / (gunData.fireRate / 60f);
@@ -25,7 +25,7 @@ public class Grip1 : MonoBehaviour
         {
             if (CanShoot())
             {
-                if(Physics.Raycast(gripMuzzle.position, transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
+                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
                 {
                     Debug.Log(hitInfo.transform.name);
                 }
@@ -44,6 +44,6 @@ public class Grip1 : MonoBehaviour
 
     private void onGunShot()
     {
-        
+
     }
 }

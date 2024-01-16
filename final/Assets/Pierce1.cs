@@ -22,11 +22,11 @@ public class Piercer1 : MonoBehaviour
         {
             if (CanShoot())
             {
-                if (Physics.Raycast(PierceMuzzle.position, transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
+                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
                 {
                     Debug.Log(hitInfo.transform.name);
                 }
-                gunData.currentEnergy-=50;
+                gunData.currentEnergy -= 50;
                 timeSinceLastShot = 0;
                 //OnGunShot();
             }
