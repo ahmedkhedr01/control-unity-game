@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Ranger : MonoBehaviour
+public class Ranger2 : MonoBehaviour
 {
     private int HP = 100;
     public Slider healthbar; // Assign this via Inspector
@@ -30,7 +30,7 @@ public class Ranger : MonoBehaviour
         // Check if the animator is entering the "YourShootingState" state
         if (stateInfo.IsName("shooting") && stateInfo.normalizedTime < 1.0f)
         {
-            Debug.Log("1");
+           // Debug.Log("1");
             shootatplayer();
         }
 

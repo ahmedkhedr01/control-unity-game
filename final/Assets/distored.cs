@@ -14,20 +14,38 @@ public class distored : MonoBehaviour
     public Transform spawnpoint;
     public float enemyspeed;
     Transform player;
-   
+    public GameObject makeinvisib;
 
 
 
 
     void Start()
     {
-
+        //makeinvisib = GameObject.FindGameObjectWithTag("distored");
+        //StartCoroutine(MakeObjectInvisibleForTwoSeconds());
     }
+    IEnumerator MakeObjectInvisibleForTwoSeconds()
+    {
+        if (makeinvisib != null)
+        {
+            // Set the GameObject inactive to make it invisible
+            makeinvisib.SetActive(false);
+           
+            // Wait for 2 seconds
+            yield return new WaitForSeconds(2f);
+
+            // Set the GameObject active to make it visible again
+            makeinvisib.SetActive(true);
+
+        }
+    }
+
     void Update()
     {
         // Get the current state information
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-
+        if (stateInfo.IsName("idle") && stateInfo.normalizedTime < 1.0f)
+            StartCoroutine(MakeObjectInvisibleForTwoSeconds());
         // Check if the animator is entering the "YourShootingState" state
         if (stateInfo.IsName("shooting") && stateInfo.normalizedTime < 1.0f)
         {
