@@ -20,10 +20,19 @@ public class HealthControl : MonoBehaviour
 
     private HealthBar healthBar;
 
+
+    private WaitForSeconds staminaRegenerationDelay = new WaitForSeconds(1f);
+    private ShieldControl shieldControl;
+    private float lastStaminaRegenerationTime;
     void Start()
     {
         GameObject healthBarGameObject = GameObject.FindWithTag("HealthBar").transform.gameObject;
         healthBar = healthBarGameObject.GetComponent<HealthBar>();
+        
+        
+        
+        shieldControl = GetComponent<ShieldControl>();
+       
         StartCoroutine(IncreaseHealthOverTime());
         StartCoroutine(IncreaseEnergyOverTime());
     }
@@ -67,6 +76,13 @@ public class HealthControl : MonoBehaviour
             }
         }
 
+           
+        }
+        if (stamina < 100 && Time.time - lastStaminaRegenerationTime >= 1f)
+        {
+            StartCoroutine(RegenerateStaminaOverTime());
+            lastStaminaRegenerationTime = Time.time;
+        }
 
 
 
@@ -191,4 +207,19 @@ public class HealthControl : MonoBehaviour
         }
         healthBar.UpdateHealthBar(healthPoints, 100);
     }
+
+
+    private IEnumerator RegenerateStaminaOverTime()
+    {
+        if(!shieldControl.shieldEnabled)
+        {
+            IncreaseStamina(5);
+            yield return staminaRegenerationDelay;
+                
+            
+        }
+        Debug.Log("no increase" + stamina);
+        
+    }
+
 }
