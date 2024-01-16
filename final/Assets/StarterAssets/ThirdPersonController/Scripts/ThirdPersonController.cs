@@ -97,7 +97,7 @@ namespace StarterAssets
         public float dashDistance = 5f; // Adjust the dash distance as needed
         public float dashingCooldown = 1.0f; // Adjust the dash cooldown as needed
         private float dashSpeed = 20f;
-        // private HealthControl healthControl;
+        private HealthControl healthControl;
 
 
         // timeout deltatime
@@ -147,7 +147,7 @@ namespace StarterAssets
 
         private void Start()
         {
-            // healthControl = GetComponent<HealthControl>();
+            healthControl = GetComponent<HealthControl>();
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
 
             _hasAnimator = TryGetComponent(out _animator);
@@ -178,7 +178,7 @@ namespace StarterAssets
             {
 
                 StartCoroutine(Dash());
-                // healthControl.DecreaseStamina(40);
+                healthControl.DecreaseStamina(40);
 
             }
         }
