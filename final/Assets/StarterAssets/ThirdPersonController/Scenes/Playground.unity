@@ -2193,6 +2193,7 @@ MonoBehaviour:
   Slot2: {fileID: 2005218252}
   Slot3: {fileID: 1511197523}
   Slot4: {fileID: 1375957987}
+  animatorPlayer: {fileID: 6982812147933622147}
 --- !u!1 &1269993121
 GameObject:
   m_ObjectHideFlags: 0
