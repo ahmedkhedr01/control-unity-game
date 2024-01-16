@@ -118,6 +118,7 @@ public class HealthControl : MonoBehaviour
         {
             healthPoints += h;
         }
+        healthBar.UpdateHealthBar(healthPoints, 100);
     }
 
     public void DecreaseStamina(int s)

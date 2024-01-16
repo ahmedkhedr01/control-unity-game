@@ -8,25 +8,33 @@ public class Spin1 : MonoBehaviour
     [SerializeField] private Transform spinMuzzle;
 
     float timeSinceLastShot;
+    public GameObject player;
+    private HealthControl healthControl;
 
     private void Start()
     {
         PlayerShoot.shootInput += Shoot;
+        healthControl = player.GetComponent<HealthControl>();
     }
 
     private bool CanShoot() => timeSinceLastShot > 1f / (gunData.fireRate / 60f);
 
     private void Shoot()
     {
-        if (gunData.currentEnergy > 0)
+        if (healthControl.energy > 0)
         {
             if (CanShoot())
             {
-                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
+                // Get the ray from the mouse cursor position
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                // Create a new Vector3 with the modified x component
+                ray.origin = new Vector3(ray.origin.x, ray.origin.y, ray.origin.z + 1.0f);
+                if (Physics.Raycast(ray, out RaycastHit hitInfo, gunData.maxDistance))
                 {
                     Debug.Log(hitInfo.transform.name);
                 }
-                gunData.currentEnergy -= 5;
+                healthControl.energy -= 5;
                 timeSinceLastShot = 0;
                 //OnGunShot();
             }
@@ -36,7 +44,6 @@ public class Spin1 : MonoBehaviour
     private void Update()
     {
         timeSinceLastShot += Time.deltaTime;
-        Debug.DrawRay(spinMuzzle.position, spinMuzzle.forward);
     }
 
     private void onGunShot()
