@@ -76,7 +76,7 @@ public class HealthControl : MonoBehaviour
             }
         }
 
-            StartCoroutine(IncreaseHealthOverTime());
+           
         }
         if (stamina < 100 && Time.time - lastStaminaRegenerationTime >= 1f)
         {
